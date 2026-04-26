@@ -1,0 +1,356 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MR. ALFARIZKY - Portofolio</title>
+    
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+    
+    <style>
+        /* --- CSS Reset & Variabel --- */
+        :root {
+            --bg-dark: #050509; /* Latar belakang hitam keunguan tua */
+            --primary-blue: #0ea5e9; /* Cyan */
+            --primary-magenta: #ec4899; /* Magenta */
+            --text-main: #f8fafc; /* Putih keabu-abuan */
+            --text-sub: #94a3b8; /* Abu-abu terang */
+            --glass-bg: rgba(255, 255, 255, 0.05); /* Latar belakang kaca transparan */
+            --glass-border: rgba(255, 255, 255, 0.1);
+        }
+
+        body {
+            margin: 0;
+            padding: 0;
+            background-color: var(--bg-dark);
+            color: var(--text-main);
+            font-family: 'Poppins', sans-serif;
+            overflow-x: hidden;
+            position: relative;
+        }
+
+        /* --- Latar Belakang (Interpretasi Sederhana) --- */
+        body::before, body::after {
+            content: '';
+            position: fixed;
+            border-radius: 50%;
+            z-index: -1;
+            filter: blur(150px);
+            opacity: 0.15;
+        }
+
+        body::before {
+            width: 600px;
+            height: 600px;
+            background: linear-gradient(135deg, var(--primary-blue), transparent);
+            top: -200px;
+            left: -200px;
+        }
+
+        body::after {
+            width: 500px;
+            height: 500px;
+            background: linear-gradient(135deg, var(--primary-magenta), transparent);
+            bottom: -100px;
+            right: -100px;
+        }
+
+        /* --- Navbar --- */
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 80px;
+            position: absolute;
+            top: 0;
+            width: 100%;
+            box-sizing: border-box;
+            z-index: 10;
+        }
+
+        .logo {
+            font-weight: 700;
+            font-size: 1.5rem;
+            background: linear-gradient(to right, var(--primary-blue), var(--primary-magenta));
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+
+        .menu-burger {
+            font-size: 2rem;
+            color: var(--text-main);
+            cursor: pointer;
+        }
+
+        /* --- Hero Section --- */
+        .hero {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 150px 80px 100px;
+            min-height: 100vh;
+            box-sizing: border-box;
+            position: relative;
+        }
+
+        .hero-content {
+            width: 50%;
+        }
+
+        .hero-title {
+            font-size: 3.5rem;
+            margin-bottom: 10px;
+            line-height: 1.1;
+        }
+
+        .name-gradient {
+            background: linear-gradient(to right, var(--primary-blue), var(--primary-magenta));
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            font-weight: 700;
+        }
+
+        .hero-subtitle {
+            color: var(--text-main);
+            font-size: 1.25rem;
+            margin-bottom: 20px;
+            font-weight: 600;
+        }
+
+        .hero-paragraph {
+            color: var(--text-sub);
+            max-width: 600px;
+            line-height: 1.6;
+            margin-bottom: 40px;
+            font-size: 1rem;
+        }
+
+        .hero-buttons {
+            display: flex;
+            gap: 20px;
+        }
+
+        .btn {
+            padding: 12px 24px;
+            border-radius: 5px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            box-sizing: border-box;
+            font-size: 0.9rem;
+        }
+
+        .btn-blue {
+            background: transparent;
+            border: 2px solid var(--primary-blue);
+            color: var(--primary-blue);
+        }
+
+        .btn-blue:hover {
+            box-shadow: 0 0 15px var(--primary-blue);
+        }
+
+        .btn-magenta {
+            background: transparent;
+            border: 2px solid var(--primary-magenta);
+            color: var(--primary-magenta);
+        }
+
+        .btn-magenta:hover {
+            box-shadow: 0 0 15px var(--primary-magenta);
+        }
+
+        /* --- Gambar Heksagon (Interpretasi Sederhana) --- */
+        .image-container {
+            width: 40%;
+            position: relative;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .hexagon-frame {
+            width: 300px;
+            height: 350px;
+            background: rgba(236, 72, 153, 0.1);
+            clip-path: polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%);
+            border: 5px solid;
+            border-image: linear-gradient(to bottom right, var(--primary-blue), var(--primary-magenta)) 1;
+            position: relative;
+            overflow: hidden;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .subject-image {
+            width: 90%; /* Atur agar pas di dalam */
+            object-fit: cover;
+            object-position: top center;
+        }
+
+        /* --- Kartu --- */
+        .cards-container {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 30px;
+            padding: 50px 80px;
+            box-sizing: border-box;
+        }
+
+        .card {
+            background: var(--glass-bg);
+            border: 1px solid var(--glass-border);
+            border-radius: 10px;
+            padding: 30px;
+            backdrop-filter: blur(10px);
+            position: relative;
+            transition: transform 0.3s ease, border-color 0.3s ease;
+            overflow: hidden;
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+        }
+
+        /* Bayangan neon dinamis berdasarkan kartu */
+        .card::after {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; width: 100%; height: 100%;
+            z-index: -1;
+            transition: box-shadow 0.3s ease;
+            box-shadow: 0 0 0 transparent;
+        }
+
+        .card-code:hover { border-color: var(--primary-blue); }
+        .card-code:hover::after { box-shadow: 0 0 15px rgba(14, 165, 233, 0.2); }
+
+        .card-music:hover { border-color: var(--primary-magenta); }
+        .card-music:hover::after { box-shadow: 0 0 15px rgba(236, 72, 153, 0.2); }
+
+        .card-icon {
+            font-size: 2.5rem;
+            margin-bottom: 25px;
+        }
+
+        .card-code .card-icon { color: var(--primary-blue); }
+        .card-music .card-icon { color: var(--primary-magenta); }
+        .card-tech .card-icon { color: #f8fafc; } /* Putih */
+
+        .card-title {
+            font-size: 1.3rem;
+            margin-bottom: 15px;
+            font-weight: 600;
+        }
+
+        .card-text {
+            color: var(--text-sub);
+            font-size: 0.95rem;
+            line-height: 1.5;
+        }
+
+        /* Kartu Kode Khusus */
+        .card-snippet {
+            font-family: monospace;
+            background: rgba(0, 0, 0, 0.3);
+            border-radius: 10px;
+            padding: 20px;
+            max-width: 400px;
+            color: var(--text-sub);
+            font-size: 0.8rem;
+            overflow-x: auto;
+            position: absolute;
+            right: 80px;
+            top: 60%;
+            z-index: 5;
+        }
+
+        /* --- Penyesuaian Responsif --- */
+        @media (max-width: 900px) {
+            nav { padding: 20px 40px; }
+            .hero {
+                flex-direction: column-reverse;
+                padding: 100px 40px 50px;
+                text-align: center;
+            }
+            .hero-content {
+                width: 100%;
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+            }
+            .hero-title { font-size: 2.5rem; }
+            .hero-paragraph { max-width: 100%; }
+            .hero-buttons { flex-direction: column; gap: 10px; width: 100%; max-width: 300px; }
+            
+            .image-container { width: 80%; margin-bottom: 50px; }
+            
+            .cards-container {
+                grid-template-columns: 1fr;
+                padding: 50px 40px;
+            }
+            .card-snippet { display: none; } /* Sembunyikan kartu snippet di mobile */
+        }
+    </style>
+</head>
+<body>
+
+    <nav>
+        <div class="logo">MR. ALFARIZKY</div>
+        <div class="menu-burger">&#9776;</div>
+    </nav>
+
+    <section class="hero">
+        <div class="hero-content">
+            <h1 class="hero-title">Hello, Saya<br><span class="name-gradient">Muhammad Rico ALFARIZKY JANEETA</span></h1>
+            <h2 class="hero-subtitle">Pengembang Kode & Kreator Musik</h2>
+            <p class="hero-paragraph">Seorang pelajar yang bersemangat dalam menggabungkan logika pemrograman dengan ritme musik, menciptakan solusi digital dan komposisi suara yang inovatif. Menjelajahi dunia web dev dan produksi audio.</p>
+            <div class="hero-buttons">
+                <a href="#" class="btn btn-blue">[Lihat Projek Kode]</a>
+                <a href="#" class="btn btn-magenta">[Dengarkan Komposisi]</a>
+            </div>
+        </div>
+        <div class="image-container">
+            <div class="hexagon-frame">
+                <img src="rico.jpg" alt="Muhammad Rico" class="subject-image">
+            </div>
+        </div>
+    </section>
+
+    <section class="cards-container">
+        <div class="card card-code">
+            <div class="card-icon">&lt;/&gt;</div>
+            <h3 class="card-title">CODING & WEB DEVELOPMENT</h3>
+            <p class="card-text">React, JS, Python, Git. Menciptakan aplikasi web responsif dan skrip otomatis. (Hapus Alfa Store)</p>
+        </div>
+        <div class="card card-music">
+            <div class="card-icon">&#9835;</div> <h3 class="card-title">MUSIK PRODUCTION & KOMPOSISI</h3>
+            <p class="card-text">Gitar, Digital Audio Workstation. Menulis melodi dan memproduksi track digital yang bertenaga.</p>
+        </div>
+        <div class="card card-tech">
+            <div class="card-icon">&#129504;</div> <h3 class="card-title">TEKNOLOGI & INOVASI</h3>
+            <p class="card-text">Pembelajaran Mesin, Gadget, Eksplorasi Tech. Membangun masa depan dengan ide-ide kreatif.</p>
+        </div>
+    </section>
+
+    <pre class="card-snippet">
+import reacts.ch
+import novece.as
+import nocote.import as nb
+
+usay auode:7ares1s2Oasirocacs.s:PylLsoOn:iHhennan39TesrIneact,"Uzeic.weD:
+noei()
+
+fusc boc3 WEB Development() {
+    return notart(
+        'React, s8, Python, Git',
+        'Web responsif dan skrip otomatis. (Hapus Alfa store)'
+    )
+}
+    </pre>
+
+</body>
+</html>
